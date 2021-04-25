@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tab_text">
+        <item>预约</item>
+        <item>历史</item>
+        <item>我的</item>
+    </string-array>
+
+    <array name="tab_icon">
+        <item>@drawable/selector_icon_tabbar_book</item>
+        <item>@drawable/selector_icon_tabbar_history</item>
+        <item>@drawable/selector_icon_tabbar_me</item>
+    </array>
+</resources>

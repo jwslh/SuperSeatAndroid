@@ -15,31 +15,26 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/colorAccent"
+    android:gravity="center"
+    android:orientation="horizontal">
 
-    <FrameLayout
-        android:id="@id/fragment_container"
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iconError"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="-16dp"
+        app:srcCompat="@drawable/xtoast_ic_error_outline_white_24dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
-
-    </FrameLayout>
-
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs"
-        style="@style/TabLayoutStyle"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/xui_actionbar_height"
-        android:background="@drawable/xui_list_item_bg_with_border_top"
-        app:tabGravity="fill"
-        app:tabIndicatorColor="@android:color/transparent"
-        app:tabMinWidth="300dp"
-        app:tabMode="fixed"
-        app:tabPaddingTop="2dp"
-        app:tabTextAppearance="@style/TabText.Explain" />
+        android:layout_marginStart="16dp"
+        android:gravity="center_vertical"
+        android:text="自定义状态"
+        android:textColor="@color/xui_config_color_white" />
 
 </LinearLayout>

@@ -1,16 +1,11 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.SuperSeatAndroid" parent="XUITheme.Phone">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
     <style name="XUITheme.Launch">
         <item name="android:windowBackground">@drawable/ss_config_bg_splash</item>
         <item name="xui_config_splash_app_logo">@drawable/ic_splash_app_logo_ss</item>
         <item name="xui_config_splash_company_logo">@drawable/ic_splash_app_slogan_ss</item>
+        <item name="android:navigationBarColor">@color/xui_config_color_transparent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
