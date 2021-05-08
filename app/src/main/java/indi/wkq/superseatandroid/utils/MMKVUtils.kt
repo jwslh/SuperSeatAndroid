@@ -20,6 +20,10 @@ object MMKVUtils {
         MMKV.defaultMMKV().decodeString(key, value)
     }
 
+    fun setMMV(key : String, value : Long) {
+        MMKV.defaultMMKV().decodeLong(key, value)
+    }
+
     fun getMMV(key: String) : String {
         if (!MMKV.defaultMMKV().containsKey(key)) {
             return ""

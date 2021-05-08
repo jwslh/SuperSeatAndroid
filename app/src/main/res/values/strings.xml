@@ -11,11 +11,11 @@
     <string name="lab_forget_password">忘记密码?</string>
     <string name="lab_login_by_verify_code">验证码登录</string>
     <string name="lab_login_by_password">密码登录</string>
-    <string name="tip_please_input_phone_number">请输入手机号码</string>
-    <string name="title_phone_number">手机号码</string>
+    <string name="tip_please_input_school_id">请输入学号</string>
+    <string name="title_school_id">学号</string>
     <string name="title_password">密码</string>
     <string name="title_old_password">旧密码</string>
-    <string name="hint_please_input_verify_code">请输入验证码</string>
+    <string name="tip_please_input_password">密码</string>
     <string name="lab_verify_code">验证码</string>
     <string name="tip_password_error">密码必须是8~18位字母和数字的组合！</string>
     <string name="tip_new_password_error">新密码必须是8~18位字母和数字的组合！</string>
@@ -37,4 +37,7 @@
     <!-- String related to app short cuts -->
     <string name="shortcut_label_setting">设置</string>
     <string name="shortcut_label_search">搜索</string>
+
+
+    <string name="name_or_pwd_empty">用户名或密码不能为空</string>
 </resources>

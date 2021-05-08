@@ -74,10 +74,16 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.1.0'
     kapt 'com.jakewharton:butterknife-compiler:10.1.0'
 
-    //下拉刷新
+    // 下拉刷新
     implementation 'com.github.xuexiangjys.SmartRefreshLayout:refresh-header:1.1.5'
     implementation 'com.github.xuexiangjys.SmartRefreshLayout:refresh-layout:1.1.5'
 
-    //TabBar
+    // TabBar
     implementation 'com.github.xuexiangjys:JPTabBar:1.0.1'
+
+    // retrofit 网络请求框架
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation 'com.google.code.gson:gson:2.8.6'
 }

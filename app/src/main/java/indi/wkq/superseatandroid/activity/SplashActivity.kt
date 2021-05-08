@@ -6,6 +6,7 @@ import com.xuexiang.xui.widget.activity.BaseSplashActivity
 import com.xuexiang.xutil.app.ActivityUtils
 import indi.wkq.superseatandroid.R
 import indi.wkq.superseatandroid.constant.MMK
+import indi.wkq.superseatandroid.utils.LocalStorageUtils
 import indi.wkq.superseatandroid.utils.MMKVUtils
 import indi.wkq.superseatandroid.utils.SettingSPUtils
 
@@ -44,10 +45,14 @@ class SplashActivity : BaseSplashActivity() {
 
     override fun onSplashFinished() {
         if (!isDisplay) {
-            if (MMKVUtils.getMMV(MMK.TOKEN).isEmpty()) {
-                ActivityUtils.startActivity(MainActivity::class.java)
-            } else {
+            var token = LocalStorageUtils.getValueFromLocal(this, MMK.TOKEN)
+            var tokenExpiration = LocalStorageUtils.getValueFromLocal(this, MMK.TOKEN_EXPIRATION)
+            if (token.isEmpty() || tokenExpiration < System.currentTimeMillis().toString()) {
                 ActivityUtils.startActivity(LoginActivity::class.java)
+            } else {
+                MMKVUtils.setMMV(MMK.TOKEN, token)
+                MMKVUtils.setMMV(MMK.TOKEN_EXPIRATION, tokenExpiration)
+                ActivityUtils.startActivity(MainActivity::class.java)
             }
         }
         finish()
