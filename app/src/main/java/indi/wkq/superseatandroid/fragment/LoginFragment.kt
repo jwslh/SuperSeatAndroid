@@ -25,7 +25,7 @@ class LoginFragment : XPageFragment() {
 
     private var mCountDownHelper: CountDownButtonHelper? = null
     private val mUserPresenter: UserPresenterImpl by lazy {
-        UserPresenterImpl(this@LoginFragment)
+        UserPresenterImpl()
     }
     private val mLoadingDialog : LoadingDialog by lazy {
         WidgetUtils.getLoadingDialog(context!!)
@@ -60,10 +60,11 @@ class LoginFragment : XPageFragment() {
                 LocalStorageUtils.saveValueIntoLocal(context!!, MMK.USER, findViewById<MaterialEditText>(R.id.et_school_id).editValue)
                 mUserPresenter.login(
                     findViewById<MaterialEditText>(R.id.et_school_id).editValue,
-                    findViewById<MaterialEditText>(R.id.et_password).editValue
+                    findViewById<MaterialEditText>(R.id.et_password).editValue,
+                    this
                 )
             }
-            R.id.tv_forget_password -> ToastUtils.info("忘记密码")
+            R.id.tv_forget_password -> ToastUtils.warning("开发中，敬请期待")
             R.id.tv_user_protocol -> ToastUtils.info("用户协议")
             R.id.tv_privacy_protocol -> ToastUtils.info("隐私政策")
         }
@@ -76,11 +77,11 @@ class LoginFragment : XPageFragment() {
         super.onDestroyView()
     }
 
-    open fun showLoading() {
+    fun showLoading() {
         mLoadingDialog.show()
     }
 
-    open fun hideLoading() {
+    fun hideLoading() {
         mLoadingDialog.hide()
     }
 
