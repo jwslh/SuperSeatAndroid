@@ -1,6 +1,7 @@
 package indi.wkq.superseatandroid
 
 import android.app.Application
+import androidx.multidex.MultiDex
 import com.xuexiang.xui.XUI
 import indi.wkq.superseatandroid.utils.sdkInit.BaseLibInit
 
@@ -14,5 +15,7 @@ class SSApp : Application() {
         BaseLibInit.init(this)
         XUI.init(this)
         XUI.debug(true)
+        // 初始化MultiDex
+        MultiDex.install(this);
     }
 }

@@ -1,9 +1,8 @@
 package indi.wkq.superseatandroid.model
 
-import indi.wkq.superseatandroid.fragment.LoadingLayout
 import indi.wkq.superseatandroid.fragment.LoginFragment
 import indi.wkq.superseatandroid.fragment.MeFragment
-import indi.wkq.superseatandroid.presenter.Impl.UserPresenterImpl
+import indi.wkq.superseatandroid.presenter.impl.UserPresenterImpl
 
 /**
  * @author  calesq
@@ -12,9 +11,7 @@ import indi.wkq.superseatandroid.presenter.Impl.UserPresenterImpl
  * 用户数据层接口
  */
 interface IUserModel {
-    fun login(username : String, password : String, mCallback : UserPresenterImpl, l : LoginFragment)
+    fun login(username : String, password : String, upi : UserPresenterImpl, l : LoginFragment)
 
-    fun getUserInfo(token : String, mCallBack : UserPresenterImpl, l : MeFragment)
-
-    fun getHistory()
+    fun getUserInfo(token : String, upi : UserPresenterImpl, m : MeFragment)
 }

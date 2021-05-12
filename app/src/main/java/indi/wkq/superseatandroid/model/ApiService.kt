@@ -1,7 +1,7 @@
 package indi.wkq.superseatandroid.model
 
-import indi.wkq.superseatandroid.constant.URL
-import indi.wkq.superseatandroid.model.response.JsonData
+import indi.wkq.superseatandroid.constant.MyURL
+import indi.wkq.superseatandroid.response.JsonData
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -19,7 +19,7 @@ interface ApiService {
         "Host: seat.lib.whu.edu.cn:8443",
         "User-Agent: doSingle/11 CFNetwork/976 Darwin/18.2.0"
     )
-    @GET(URL.PATH_LOGIN)
+    @GET(MyURL.PATH_LOGIN)
     fun login(@Query("username")username :String, @Query("password")password : String) : Call<JsonData>
 
 
@@ -30,6 +30,6 @@ interface ApiService {
         "Host: seat.lib.whu.edu.cn:8443",
         "User-Agent: doSingle/11 CFNetwork/976 Darwin/18.2.0"
     )
-    @GET(URL.PATH_USR_INFO)
+    @GET(MyURL.PATH_USR_INFO)
     fun getUserInfo(@Query("token")token :String) : Call<JsonData>
 }

@@ -10,5 +10,5 @@ import indi.wkq.superseatandroid.fragment.MeFragment
 interface IUserPresenter {
     fun login(username : String, password : String, loginFragment: LoginFragment)
 
-    fun getUserInfo(meFragment: MeFragment) : Int
+    fun getUserInfo(token : String, meFragment: MeFragment)
 }

@@ -1,18 +1,17 @@
-package indi.wkq.superseatandroid.presenter.Impl
+package indi.wkq.superseatandroid.presenter.impl
 
 import com.google.gson.Gson
 import com.xuexiang.xutil.app.ActivityUtils
 import indi.wkq.superseatandroid.R
 import indi.wkq.superseatandroid.activity.MainActivity
 import indi.wkq.superseatandroid.constant.MMK
-import indi.wkq.superseatandroid.fragment.LoadingLayout
 import indi.wkq.superseatandroid.fragment.LoginFragment
 import indi.wkq.superseatandroid.fragment.MeFragment
 import indi.wkq.superseatandroid.model.impl.UserModelImpl
-import indi.wkq.superseatandroid.model.response.JsonData
-import indi.wkq.superseatandroid.model.response.LoginResponse
-import indi.wkq.superseatandroid.model.response.UserInfoResponse
+import indi.wkq.superseatandroid.response.JsonData
+import indi.wkq.superseatandroid.response.LoginResponse
 import indi.wkq.superseatandroid.presenter.IUserPresenter
+import indi.wkq.superseatandroid.response.GetUserInfoResponse
 import indi.wkq.superseatandroid.utils.LocalStorageUtils
 import indi.wkq.superseatandroid.utils.MMKVUtils
 import indi.wkq.superseatandroid.utils.ToastUtils
@@ -21,7 +20,7 @@ import indi.wkq.superseatandroid.utils.ToastUtils
  * @author  calesq
  * @date    2021/5/8
  */
-class UserPresenterImpl() : IUserPresenter{
+object UserPresenterImpl : IUserPresenter {
 
     private var mLoginFragment : LoginFragment? = null
     private var mmeFragment : MeFragment? = null
@@ -55,31 +54,24 @@ class UserPresenterImpl() : IUserPresenter{
         ActivityUtils.startActivity(MainActivity::class.java)
     }
 
-    fun fail(code : Int) {
-        ToastUtils.error(code)
-    }
-
-    override fun getUserInfo(meFragment: MeFragment) : Int {
+    override fun getUserInfo(token: String, meFragment: MeFragment) {
         mmeFragment = meFragment
-        val token = MMKVUtils.getMMV(MMK.TOKEN)
-        if ("" == token) {
-            return 401
-        }
-
         UserModelImpl.getUserInfo(token, this, meFragment)
-
-        return  200
     }
 
-    fun usrInfoSuccess(jsonData: JsonData) {
+    fun getUserInfoSuccess(jsonData: JsonData) {
         if (!jsonData.status.equals("success")) {
             ToastUtils.warning(jsonData.status + " : " + jsonData.message)
             return
         }
 
         var gson = Gson()
-        var resData = gson.fromJson(gson.toJson(jsonData.data), UserInfoResponse::class.java)
-        mmeFragment!!.updateUserInfo(resData)
+        var resData = gson.fromJson(gson.toJson(jsonData.data), GetUserInfoResponse::class.java)
+        mmeFragment!!.updateView(resData!!)
+    }
+
+    fun fail(code : Int) {
+        ToastUtils.error(code)
     }
 
     private fun isEmpty(s : String) : Boolean {

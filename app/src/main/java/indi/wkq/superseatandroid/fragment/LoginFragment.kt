@@ -12,7 +12,7 @@ import com.xuexiang.xui.widget.dialog.LoadingDialog
 import com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText
 import indi.wkq.superseatandroid.R
 import indi.wkq.superseatandroid.constant.MMK
-import indi.wkq.superseatandroid.presenter.Impl.UserPresenterImpl
+import indi.wkq.superseatandroid.presenter.impl.UserPresenterImpl
 import indi.wkq.superseatandroid.utils.LocalStorageUtils
 import indi.wkq.superseatandroid.utils.ToastUtils
 
@@ -24,9 +24,7 @@ import indi.wkq.superseatandroid.utils.ToastUtils
 class LoginFragment : XPageFragment() {
 
     private var mCountDownHelper: CountDownButtonHelper? = null
-    private val mUserPresenter: UserPresenterImpl by lazy {
-        UserPresenterImpl()
-    }
+
     private val mLoadingDialog : LoadingDialog by lazy {
         WidgetUtils.getLoadingDialog(context!!)
             .setIconScale(0.4f)
@@ -58,7 +56,7 @@ class LoginFragment : XPageFragment() {
         when (view.id) {
             R.id.btn_login -> {
                 LocalStorageUtils.saveValueIntoLocal(context!!, MMK.USER, findViewById<MaterialEditText>(R.id.et_school_id).editValue)
-                mUserPresenter.login(
+                UserPresenterImpl.login(
                     findViewById<MaterialEditText>(R.id.et_school_id).editValue,
                     findViewById<MaterialEditText>(R.id.et_password).editValue,
                     this

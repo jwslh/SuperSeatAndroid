@@ -1,13 +1,7 @@
 package indi.wkq.superseatandroid.fragment
 
-import android.graphics.drawable.Icon
-import android.os.Build
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageView
 import com.xuexiang.xpage.annotation.Page
 import com.xuexiang.xpage.base.XPageFragment
@@ -18,9 +12,12 @@ import com.xuexiang.xui.widget.dialog.LoadingDialog
 import com.xuexiang.xutil.app.ActivityUtils
 import indi.wkq.superseatandroid.R
 import indi.wkq.superseatandroid.activity.LoginActivity
-import indi.wkq.superseatandroid.activity.MainActivity
-import indi.wkq.superseatandroid.model.response.UserInfoResponse
-import indi.wkq.superseatandroid.presenter.Impl.UserPresenterImpl
+import indi.wkq.superseatandroid.constant.MMK
+import indi.wkq.superseatandroid.presenter.impl.UserPresenterImpl
+import indi.wkq.superseatandroid.response.GetUserInfoResponse
+import indi.wkq.superseatandroid.utils.LocalStorageUtils
+import indi.wkq.superseatandroid.utils.MMKVUtils
+import indi.wkq.superseatandroid.utils.ToastUtils
 
 /**
  * @author  calesq
@@ -77,36 +74,6 @@ class MeFragment : XPageFragment() {
         return TitleBar(context)
     }
 
-    private fun initData() {
-        if (UserPresenterImpl().getUserInfo(this) == 401) {
-            ActivityUtils.startActivity(LoginActivity::class.java)
-        }
-    }
-
-    fun updateUserInfo(userInfoResponse: UserInfoResponse) {
-        mRootView.findViewById<View>(R.id.header).findViewById<TextView>(R.id.tv_avatar).text = userInfoResponse.name
-
-        mRootView.findViewById<View>(R.id.school_id_item).apply {
-            findViewById<TextView>(R.id.item_val).text = userInfoResponse.username
-        }
-
-        mRootView.findViewById<View>(R.id.status_item).apply {
-            findViewById<TextView>(R.id.item_val).text = translateStatus(userInfoResponse.status)
-        }
-
-        mRootView.findViewById<View>(R.id.reserve_status_item).apply {
-            findViewById<TextView>(R.id.item_val).text = translateReserverStatus(userInfoResponse.reservationStatus)
-        }
-
-        mRootView.findViewById<View>(R.id.last_in_item).apply {
-            findViewById<TextView>(R.id.item_val).text = userInfoResponse.lastIn
-        }
-
-        mRootView.findViewById<View>(R.id.last_out_item).apply {
-            findViewById<TextView>(R.id.item_val).text = userInfoResponse.lastOut
-        }
-    }
-
     private fun translateStatus(old : String) : String {
         return when(old) {
             "NORMAL" -> "正常"
@@ -120,6 +87,40 @@ class MeFragment : XPageFragment() {
             "RESERVE"   -> "未签到"
             "AWAY"      -> "离开"
             else -> "暂无"
+        }
+    }
+
+    private fun initData() {
+        var token = LocalStorageUtils.getValueFromLocal(context!!, MMK.TOKEN)
+        if (token == "") {
+            ToastUtils.warning("身份过期，请重新登录", 1500)
+            ActivityUtils.startActivity(LoginActivity::class.java)
+            return
+        }
+        UserPresenterImpl.getUserInfo(token, this)
+    }
+
+    fun updateView(getUserInfoResponse: GetUserInfoResponse) {
+        mRootView.findViewById<View>(R.id.header).findViewById<TextView>(R.id.tv_avatar).text = getUserInfoResponse.name
+
+        mRootView.findViewById<View>(R.id.school_id_item).apply {
+            findViewById<TextView>(R.id.item_val).text = getUserInfoResponse.username
+        }
+
+        mRootView.findViewById<View>(R.id.status_item).apply {
+            findViewById<TextView>(R.id.item_val).text = translateStatus(getUserInfoResponse.status)
+        }
+
+        mRootView.findViewById<View>(R.id.reserve_status_item).apply {
+            findViewById<TextView>(R.id.item_val).text = translateReserverStatus(getUserInfoResponse.reservationStatus)
+        }
+
+        mRootView.findViewById<View>(R.id.last_in_item).apply {
+            findViewById<TextView>(R.id.item_val).text = getUserInfoResponse.lastIn
+        }
+
+        mRootView.findViewById<View>(R.id.last_out_item).apply {
+            findViewById<TextView>(R.id.item_val).text = getUserInfoResponse.lastOut
         }
     }
 

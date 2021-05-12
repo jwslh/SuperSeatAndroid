@@ -1,13 +1,12 @@
 package indi.wkq.superseatandroid.model.impl
 
-import indi.wkq.superseatandroid.constant.URL
-import indi.wkq.superseatandroid.fragment.LoadingLayout
+import indi.wkq.superseatandroid.constant.MyURL
 import indi.wkq.superseatandroid.fragment.LoginFragment
 import indi.wkq.superseatandroid.fragment.MeFragment
 import indi.wkq.superseatandroid.model.ApiService
 import indi.wkq.superseatandroid.model.IUserModel
-import indi.wkq.superseatandroid.model.response.JsonData
-import indi.wkq.superseatandroid.presenter.Impl.UserPresenterImpl
+import indi.wkq.superseatandroid.response.JsonData
+import indi.wkq.superseatandroid.presenter.impl.UserPresenterImpl
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -17,11 +16,11 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object UserModelImpl : IUserModel {
 
-    private val apiService: ApiService = Retrofit.Builder().baseUrl(URL.BASE_URL).addConverterFactory(
+    private val apiService: ApiService = Retrofit.Builder().baseUrl(MyURL.BASE_URL).addConverterFactory(
         GsonConverterFactory.create()
     ).build().create(ApiService::class.java)
 
-    override fun login(username: String, password: String, mCallBack : UserPresenterImpl, l : LoginFragment) {
+    override fun login(username: String, password: String, upi : UserPresenterImpl, l : LoginFragment) {
 
         val res = apiService.login(username, password)
 
@@ -29,9 +28,9 @@ object UserModelImpl : IUserModel {
         res.enqueue(object : Callback<JsonData> {
             override fun onResponse(call: Call<JsonData>, response: Response<JsonData>) {
                 l.hideLoading()
-                response.body()?: mCallBack.fail(response.raw().code())
+                response.body()?: upi.fail(response.raw().code())
                 var jsonData : JsonData = response.body()!!
-                mCallBack.loginSuccess(jsonData)
+                upi.loginSuccess(jsonData)
             }
 
             override fun onFailure(call: Call<JsonData>, t: Throwable) {
@@ -41,26 +40,22 @@ object UserModelImpl : IUserModel {
         })
     }
 
-    override fun getUserInfo(token : String, mCallBack : UserPresenterImpl, l : MeFragment) {
+    override fun getUserInfo(token: String, upi: UserPresenterImpl, m: MeFragment) {
         val res = apiService.getUserInfo(token)
-        l.showLoading()
+
+        m.showLoading()
         res.enqueue(object : Callback<JsonData> {
             override fun onResponse(call: Call<JsonData>, response: Response<JsonData>) {
-                l.hideLoading()
-                response.body()?: mCallBack.fail(response.raw().code())
+                m.hideLoading()
+                response.body()?: upi.fail(response.raw().code())
                 var jsonData : JsonData = response.body()!!
-                mCallBack.usrInfoSuccess(jsonData)
+                upi.getUserInfoSuccess(jsonData)
             }
 
             override fun onFailure(call: Call<JsonData>, t: Throwable) {
                 println("failed: " + t.message)
-                l.hideLoading()
+                m.hideLoading()
             }
         })
     }
-
-    override fun getHistory() {
-        TODO("Not yet implemented")
-    }
-
 }
