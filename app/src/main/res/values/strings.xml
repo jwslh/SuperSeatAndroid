@@ -40,4 +40,12 @@
 
 
     <string name="name_or_pwd_empty">用户名或密码不能为空</string>
+
+
+    <!-- fragment me -->
+    <string name="tv_title_school_id">学号</string>
+    <string name="tv_title_status">账号状态</string>
+    <string name="tv_title_reserve_status">预约状态</string>
+    <string name="tv_title_last_in">最近进馆时间</string>
+    <string name="tv_title_last_out">最近出馆时间</string>
 </resources>

@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FF9800"
-    >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="ME">
+    <include
+        android:id="@+id/header"
+        layout="@layout/fragment_me_header"
+         />
 
-    </TextView>
+    <include
+        android:id="@+id/school_id_item"
+        layout="@layout/fragment_me_item"
+        />
+
+    <include layout="@layout/fragment_me_item"
+        android:id="@+id/status_item"
+        />
+
+    <include layout="@layout/fragment_me_item"
+        android:id="@+id/reserve_status_item"
+        />
+
+    <include layout="@layout/fragment_me_item"
+        android:id="@+id/last_in_item"
+        />
+
+    <include layout="@layout/fragment_me_item"
+        android:id="@+id/last_out_item"
+        />
 
 </LinearLayout>
