@@ -11,4 +11,7 @@ object MyURL {
 
     const val PATH_USR_INFO = "/rest/v2/user"
 
+    const val PATH_RESERVATIONS = "/rest/v2/user/reservations"
+
+    const val PATH_HISTORY = "/rest/v2/history/{page}/{pageSize}"
 }

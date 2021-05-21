@@ -1,4 +1,4 @@
-package indi.wkq.superseatandroid.response
+package indi.wkq.superseatandroid.model.response
 
 /**
  * @author  calesq

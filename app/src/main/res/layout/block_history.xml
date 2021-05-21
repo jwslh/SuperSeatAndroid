@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#dddddd"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_history_block"
+        android:orientation="vertical"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="5dp"
+        >
+
+        <include
+            android:id="@+id/date"
+            layout="@layout/block_item_history" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dddddd" />
+
+        <include
+            android:id="@+id/time"
+            layout="@layout/block_item_history" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dddddd" />
+
+        <include
+            android:id="@+id/location"
+            layout="@layout/block_item_history" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dddddd" />
+
+        <include
+            android:id="@+id/status"
+            layout="@layout/block_item_history" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dddddd" />
+
+        <include
+            android:id="@+id/action"
+            layout="@layout/block_action_history" />
+
+    </LinearLayout>
+</LinearLayout>

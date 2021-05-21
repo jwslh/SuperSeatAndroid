@@ -48,4 +48,16 @@
     <string name="tv_title_reserve_status">预约状态</string>
     <string name="tv_title_last_in">最近进馆时间</string>
     <string name="tv_title_last_out">最近出馆时间</string>
+
+    <!-- fragment history -->
+    <string name="btn_cancel">取消</string>
+    <string name="btn_stop">结束</string>
+    <string name="btn_change">改签</string>
+    <string name="tv_title_date">日期</string>
+    <string name="tv_title_time">时间</string>
+    <string name="tv_title_location">位置</string>
+    <string name="tv_title_history_status">状态</string>
+
+    <!-- const -->
+    <string name="const_div_time">22:30:00</string>
 </resources>

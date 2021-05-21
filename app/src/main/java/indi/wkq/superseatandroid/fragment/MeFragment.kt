@@ -14,9 +14,8 @@ import indi.wkq.superseatandroid.R
 import indi.wkq.superseatandroid.activity.LoginActivity
 import indi.wkq.superseatandroid.constant.MMK
 import indi.wkq.superseatandroid.presenter.impl.UserPresenterImpl
-import indi.wkq.superseatandroid.response.GetUserInfoResponse
+import indi.wkq.superseatandroid.model.response.GetUserInfoResponse
 import indi.wkq.superseatandroid.utils.LocalStorageUtils
-import indi.wkq.superseatandroid.utils.MMKVUtils
 import indi.wkq.superseatandroid.utils.ToastUtils
 
 /**

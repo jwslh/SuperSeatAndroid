@@ -1,6 +1,4 @@
-package indi.wkq.superseatandroid.response
-
-import java.io.Serializable
+package indi.wkq.superseatandroid.model.response
 
 /**
  * @author  calesq

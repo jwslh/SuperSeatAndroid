@@ -5,7 +5,7 @@ import indi.wkq.superseatandroid.fragment.LoginFragment
 import indi.wkq.superseatandroid.fragment.MeFragment
 import indi.wkq.superseatandroid.model.ApiService
 import indi.wkq.superseatandroid.model.IUserModel
-import indi.wkq.superseatandroid.response.JsonData
+import indi.wkq.superseatandroid.model.response.JsonData
 import indi.wkq.superseatandroid.presenter.impl.UserPresenterImpl
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
@@ -34,8 +34,8 @@ object UserModelImpl : IUserModel {
             }
 
             override fun onFailure(call: Call<JsonData>, t: Throwable) {
-                println("failed: " + t.message)
                 l.hideLoading()
+                upi.netError(t.message)
             }
         })
     }
@@ -53,8 +53,8 @@ object UserModelImpl : IUserModel {
             }
 
             override fun onFailure(call: Call<JsonData>, t: Throwable) {
-                println("failed: " + t.message)
                 m.hideLoading()
+                upi.netError(t.message)
             }
         })
     }

@@ -8,10 +8,10 @@ import indi.wkq.superseatandroid.constant.MMK
 import indi.wkq.superseatandroid.fragment.LoginFragment
 import indi.wkq.superseatandroid.fragment.MeFragment
 import indi.wkq.superseatandroid.model.impl.UserModelImpl
-import indi.wkq.superseatandroid.response.JsonData
-import indi.wkq.superseatandroid.response.LoginResponse
+import indi.wkq.superseatandroid.model.response.JsonData
+import indi.wkq.superseatandroid.model.response.LoginResponse
 import indi.wkq.superseatandroid.presenter.IUserPresenter
-import indi.wkq.superseatandroid.response.GetUserInfoResponse
+import indi.wkq.superseatandroid.model.response.GetUserInfoResponse
 import indi.wkq.superseatandroid.utils.LocalStorageUtils
 import indi.wkq.superseatandroid.utils.MMKVUtils
 import indi.wkq.superseatandroid.utils.ToastUtils
@@ -76,5 +76,9 @@ object UserPresenterImpl : IUserPresenter {
 
     private fun isEmpty(s : String) : Boolean {
         return s == ""
+    }
+
+    fun netError(msg : String?) {
+        ToastUtils.error(msg?: "网络错误")
     }
 }
