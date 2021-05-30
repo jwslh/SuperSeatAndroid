@@ -2,10 +2,12 @@ package indi.wkq.superseatandroid.activity
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import com.google.android.material.tabs.TabLayout
 import com.xuexiang.xui.utils.ResUtils
 import com.xuexiang.xui.utils.WidgetUtils
+import com.xuexiang.xutil.app.FragmentUtils
 import com.xuexiang.xutil.common.ClickUtils
 import com.xuexiang.xutil.common.ClickUtils.OnClick2ExitListener
 import com.xuexiang.xutil.tip.ToastUtils
@@ -13,6 +15,7 @@ import indi.wkq.superseatandroid.R
 import indi.wkq.superseatandroid.base.BaseActivity
 import indi.wkq.superseatandroid.fragment.BookFragment
 import indi.wkq.superseatandroid.fragment.HistoryFragment
+import indi.wkq.superseatandroid.fragment.LibraryFragment
 import indi.wkq.superseatandroid.fragment.MeFragment
 
 class MainActivity : BaseActivity(), OnClick2ExitListener {
@@ -54,10 +57,22 @@ class MainActivity : BaseActivity(), OnClick2ExitListener {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                Log.w("Main",FragmentUtils.getAllFragments(supportFragmentManager).toString())
                 when (tab!!.position) {
-                    0 -> switchPage(BookFragment::class.java)
-                    1 -> switchPage(HistoryFragment::class.java)
-                    2 -> switchPage(MeFragment::class.java)
+                    0 -> {
+                        val topFragment = FragmentUtils.getTop(supportFragmentManager)
+                        if (topFragment.javaClass == LibraryFragment::class.java) {
+                            FragmentUtils.show(topFragment)
+                        } else {
+                            switchPage(BookFragment::class.java)
+                        }
+                    }
+                    1 -> {
+                        switchPage(HistoryFragment::class.java)
+                    }
+                    2 -> {
+                        switchPage(MeFragment::class.java)
+                    }
                 }
                 tab.select()
             }

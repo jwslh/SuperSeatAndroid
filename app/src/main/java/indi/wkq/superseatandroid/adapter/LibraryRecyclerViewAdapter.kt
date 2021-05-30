@@ -52,7 +52,7 @@ class LibraryRecyclerViewAdapter(private val mFragment: XPageFragment, private v
                         .setOnClickListener {
                             var bundle = Bundle()
                             bundle.putString("library", item.info.group + item.info.title)
-                            mFragment.openPage("图书馆房间信息", bundle, CoreAnim.slide)
+                            mFragment.openPage("图书馆房间信息", bundle, CoreAnim.slide, true)
                         }
                 },
                 { _: LinkageSecondaryHeaderViewHolder?, item: BaseGroupedItem<DefaultGroupedItem.ItemInfo?>? -> },
