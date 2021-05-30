@@ -28,16 +28,4 @@ class LoginActivity : XPageActivity() {
         return KeyboardUtils.onDisableBackKeyDown(keyCode) && super.onKeyDown(keyCode, event)
     }
 
-    /**
-     * 打开fragment
-     *
-     * @param clazz          页面类
-     * @param addToBackStack 是否添加到栈中
-     * @return 打开的fragment对象
-     */
-    private fun <T : XPageFragment?> openPage(clazz: Class<T>?, addToBackStack: Boolean): T {
-        val page = CoreSwitchBean(clazz)
-                .setAddToBackStack(addToBackStack)
-        return openPage(page) as T
-    }
 }

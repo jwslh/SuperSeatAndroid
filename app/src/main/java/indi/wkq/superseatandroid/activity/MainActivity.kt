@@ -2,20 +2,20 @@ package indi.wkq.superseatandroid.activity
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
-import butterknife.BindView
+import android.view.KeyEvent
 import com.google.android.material.tabs.TabLayout
-import com.jpeng.jptabbar.OnTabSelectListener
 import com.xuexiang.xui.utils.ResUtils
 import com.xuexiang.xui.utils.WidgetUtils
+import com.xuexiang.xutil.common.ClickUtils
+import com.xuexiang.xutil.common.ClickUtils.OnClick2ExitListener
+import com.xuexiang.xutil.tip.ToastUtils
 import indi.wkq.superseatandroid.R
 import indi.wkq.superseatandroid.base.BaseActivity
 import indi.wkq.superseatandroid.fragment.BookFragment
 import indi.wkq.superseatandroid.fragment.HistoryFragment
 import indi.wkq.superseatandroid.fragment.MeFragment
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), OnClick2ExitListener {
 
     var mTabLayout: TabLayout? = null
 
@@ -31,11 +31,11 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initTab() {
-        val tabTextList : Array<String> = ResUtils.getStringArray(R.array.tab_text)
-        val tabIconList : Array<Drawable> = ResUtils.getDrawableArray(this, R.array.tab_icon)
-        var size : Int = tabIconList.size
-        for (index : Int in 0 until size) {
-            var newTab : TabLayout.Tab = mTabLayout!!.newTab()
+        val tabTextList: Array<String> = ResUtils.getStringArray(R.array.tab_text)
+        val tabIconList: Array<Drawable> = ResUtils.getDrawableArray(this, R.array.tab_icon)
+        var size: Int = tabIconList.size
+        for (index: Int in 0 until size) {
+            var newTab: TabLayout.Tab = mTabLayout!!.newTab()
             newTab.setText(tabTextList[index])
             newTab.setIcon(tabIconList[index])
             mTabLayout!!.addTab(newTab)
@@ -46,7 +46,7 @@ class MainActivity : BaseActivity() {
         openPage(MeFragment::class.java)
         mTabLayout?.selectTab(mTabLayout?.getTabAt(2))
 
-        mTabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+        mTabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
 
@@ -54,7 +54,7 @@ class MainActivity : BaseActivity() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                when(tab!!.position) {
+                when (tab!!.position) {
                     0 -> switchPage(BookFragment::class.java)
                     1 -> switchPage(HistoryFragment::class.java)
                     2 -> switchPage(MeFragment::class.java)
@@ -63,5 +63,29 @@ class MainActivity : BaseActivity() {
             }
 
         })
+    }
+
+    /**
+     * 菜单、返回键响应
+     */
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            ClickUtils.exitBy2Click(2000, this)
+        }
+        return true
+    }
+
+    /**
+     * 再点击一次
+     */
+    override fun onRetry() {
+        ToastUtils.toast("再按一次退出程序")
+    }
+
+    /**
+     * 退出
+     */
+    override fun onExit() {
+        moveTaskToBack(true)
     }
 }

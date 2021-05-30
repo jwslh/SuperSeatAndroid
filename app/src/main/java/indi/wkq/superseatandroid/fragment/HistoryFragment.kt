@@ -1,12 +1,15 @@
 package indi.wkq.superseatandroid.fragment
 
-import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xuexiang.xpage.annotation.Page
 import com.xuexiang.xpage.base.XPageFragment
 import com.xuexiang.xpage.enums.CoreAnim
 import com.xuexiang.xpage.utils.TitleBar
+import com.xuexiang.xpage.utils.TitleUtils
+import com.xuexiang.xui.utils.DensityUtils
 import com.xuexiang.xui.utils.WidgetUtils
 import com.xuexiang.xui.widget.dialog.LoadingDialog
 import com.xuexiang.xutil.app.ActivityUtils
@@ -26,7 +29,7 @@ import indi.wkq.superseatandroid.utils.ToastUtils
  * @author  calesq
  * @date    2021/4/25
  */
-@Page(anim = CoreAnim.none)
+@Page(name = "历史记录", anim = CoreAnim.fade)
 class HistoryFragment : XPageFragment() {
     override fun initListeners() {
     }
@@ -40,7 +43,9 @@ class HistoryFragment : XPageFragment() {
     }
 
     override fun initTitleBar(): TitleBar {
-        return TitleBar(context)
+        var titleBar = super.initTitleBar()
+        titleBar.setLeftImageDrawable(null)
+        return titleBar
     }
 
     private fun initData() {
@@ -58,8 +63,7 @@ class HistoryFragment : XPageFragment() {
         ) {
             LibraryPresenterImpl.getHistory(token, 1, 10, this)
         } else {
-            LibraryPresenterImpl.getHistory(token, 1, 10, this)
-            //LibraryPresenterImpl.getReservations(token, this)
+            LibraryPresenterImpl.getReservations(token, this)
         }
     }
 

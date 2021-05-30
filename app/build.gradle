@@ -88,5 +88,9 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.8.6'
 
+    // 支持多函数
     implementation 'com.android.support:multidex:1.0.3'
+
+    //双列表联动
+    implementation 'com.kunminx.linkage:linkage-recyclerview:1.9.2'
 }
