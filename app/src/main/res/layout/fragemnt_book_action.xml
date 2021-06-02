@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:layout_centerHorizontal="true"
     android:orientation="vertical">
     <Space
         android:layout_width="wrap_content"
@@ -48,17 +49,17 @@
         android:layout_width="wrap_content"
         android:layout_height="20dp" />
 
-    <Button
+    <com.xuexiang.xui.widget.button.roundbutton.RoundButton
         android:id="@+id/book_btn"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        style="@style/RoundButton.Auto"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
         android:layout_marginBottom="12dp"
-        android:layout_marginTop="12dp"
-        android:text="抢座"
-        android:textColor="?android:textColorPrimary"
-        android:background="@color/xui_btn_blue_normal_color"
-        android:textSize="18sp"
-        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="36dp"/>
+        android:layout_height="36dp"
+        android:textSize="18sp"
+        android:text="抢座"
+        android:textColor="@color/xui_default_round_btn_white_text"
+        app:rb_backgroundColor="@color/xui_round_btn_blue_bg"
+        app:rb_borderColor="@color/xui_round_btn_blue_bg" />
 </LinearLayout>
