@@ -13,10 +13,7 @@ import com.xuexiang.xutil.common.ClickUtils.OnClick2ExitListener
 import com.xuexiang.xutil.tip.ToastUtils
 import indi.wkq.superseatandroid.R
 import indi.wkq.superseatandroid.base.BaseActivity
-import indi.wkq.superseatandroid.fragment.BookFragment
-import indi.wkq.superseatandroid.fragment.HistoryFragment
-import indi.wkq.superseatandroid.fragment.LibraryFragment
-import indi.wkq.superseatandroid.fragment.MeFragment
+import indi.wkq.superseatandroid.fragment.*
 
 class MainActivity : BaseActivity(), OnClick2ExitListener {
 
@@ -57,12 +54,11 @@ class MainActivity : BaseActivity(), OnClick2ExitListener {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                Log.w("Main",FragmentUtils.getAllFragments(supportFragmentManager).toString())
                 when (tab!!.position) {
                     0 -> {
-                        val topFragment = FragmentUtils.getTop(supportFragmentManager)
-                        if (topFragment.javaClass == LibraryFragment::class.java) {
-                            FragmentUtils.show(topFragment)
+                        val childFragment = FragmentUtils.findFragment(supportFragmentManager, "抢座页面") ?: FragmentUtils.findFragment(supportFragmentManager, "图书馆房间信息")
+                        if (childFragment != null) {
+                            FragmentUtils.show(childFragment)
                         } else {
                             switchPage(BookFragment::class.java)
                         }
@@ -75,6 +71,7 @@ class MainActivity : BaseActivity(), OnClick2ExitListener {
                     }
                 }
                 tab.select()
+                Log.w("Main",FragmentUtils.getAllFragments(supportFragmentManager).toString())
             }
 
         })
