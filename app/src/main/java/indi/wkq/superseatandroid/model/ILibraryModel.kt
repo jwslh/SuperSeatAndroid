@@ -1,6 +1,7 @@
 package indi.wkq.superseatandroid.model
 
 import indi.wkq.superseatandroid.fragment.HistoryFragment
+import indi.wkq.superseatandroid.fragment.LibraryFragment
 import indi.wkq.superseatandroid.presenter.impl.LibraryPresenterImpl
 
 /**
@@ -14,4 +15,6 @@ interface ILibraryModel {
     fun getReservations(token : String, libraryPresenterImpl : LibraryPresenterImpl, historyFragment: HistoryFragment)
 
     fun getHistoryRecords(token: String, page : Int, pageSize : Int, libraryPresenterImpl: LibraryPresenterImpl, historyFragment: HistoryFragment)
+
+    fun getSeatsInfo(token: String, roomId: String, date: String, libraryPresenterImpl: LibraryPresenterImpl, libraryFragment: LibraryFragment)
 }

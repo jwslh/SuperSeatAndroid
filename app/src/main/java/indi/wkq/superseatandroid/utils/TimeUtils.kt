@@ -9,8 +9,8 @@ import java.util.*
  */
 object TimeUtils {
 
-    private const val TIME_TEXT_PATTERN = "yyyy/MM/dd HH:mm:ss"
-    private const val DATE_PATTERN = "yyyy/MM/dd"
+    private const val TIME_TEXT_PATTERN = "yyyy-MM-dd HH:mm:ss"
+    private const val DATE_PATTERN = "yyyy-MM-dd"
     private const val TIME_PATTERN = "HH:mm:ss"
 
     fun getTimeStampFromTimeText(timeText: String): Long =
@@ -52,4 +52,58 @@ object TimeUtils {
         }
         return ""
     }
+
+    /**
+     * 获取时间段
+     *
+     * @param interval 时间间隔（分钟）
+     * @return
+     */
+    fun getTimePeriod(interval: Int): Array<String?>? {
+        return getTimePeriod(24, interval)
+    }
+
+    /**
+     * 获取时间段
+     *
+     * @param interval 时间间隔（分钟）
+     * @return
+     */
+    fun getTimePeriod(totalHour: Int, interval: Int): Array<String?>? {
+        var time = arrayOfNulls<String>(totalHour * 60 / interval)
+        var point: Int
+        var hour: Int
+        var min: Int
+        for (i in time.indices) {
+            point = i * interval
+            hour = point / 60
+            min = point - hour * 60
+            time[i] =
+                (if (hour < 9) "0$hour" else "" + hour) + ":" + if (min < 9) "0$min" else "" + min
+        }
+        return time
+    }
+
+
+    /**
+     * 获取时间段
+     *
+     * @param interval 时间间隔（分钟）
+     * @return
+     */
+    fun getTimePeriod(startHour: Int, totalHour: Int, interval: Int): Array<String?>? {
+        val time = arrayOfNulls<String>(totalHour * 60 / interval)
+        var point: Int
+        var hour: Int
+        var min: Int
+        for (i in time.indices) {
+            point = i * interval + startHour * 60
+            hour = point / 60
+            min = point - hour * 60
+            time[i] =
+                (if (hour < 9) "0$hour" else "" + hour) + ":" + if (min < 9) "0$min" else "" + min
+        }
+        return time
+    }
+
 }

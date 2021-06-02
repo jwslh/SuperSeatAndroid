@@ -61,4 +61,19 @@ interface ApiService {
         @Path("pageSize") pageSize: Int,
         @Query("token") token: String
     ): Call<JsonData>
+
+    @Headers(
+        "Content-Type: application/json;charset=UTF-8",
+        "Connection: keep-alive",
+        "Keep-Alive: timeout=5, max=1000",
+        "Host: seat.lib.whu.edu.cn:8443",
+        "User-Agent: doSingle/11 CFNetwork/976 Darwin/18.2.0"
+    )
+    @GET(MyURL.PATH_LAYOUT_BY_DATE)
+    fun getSeatsInRoom(
+        @Path("roomId") roomId: String,
+        @Path("date") date: String,
+        @Query("token") token: String
+    ): Call<JsonData>
+
 }

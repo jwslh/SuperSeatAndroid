@@ -63,4 +63,11 @@
 
     <!-- const -->
     <string name="const_div_time">22:30:00</string>
+    <string name="seat_const">座位号:</string>
+
+    <!-- font icon -->
+    <string name="power">fa-power-off;</string>
+    <string name="window">&#xe663;</string>
+    <string name="computer">&#xe68a;</string>
+
 </resources>

@@ -81,6 +81,7 @@ class LoginFragment : XPageFragment() {
 
     fun hideLoading() {
         mLoadingDialog.hide()
+        mLoadingDialog.dismiss()
     }
 
     override fun initTitleBar(): TitleBar {

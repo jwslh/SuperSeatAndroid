@@ -95,5 +95,6 @@ class HistoryFragment : XPageFragment() {
 
     fun hideLoading() {
         mLoadingDialog.hide()
+        mLoadingDialog.dismiss()
     }
 }

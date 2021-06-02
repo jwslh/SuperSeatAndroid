@@ -3,11 +3,9 @@ package indi.wkq.superseatandroid.presenter.impl
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import indi.wkq.superseatandroid.fragment.HistoryFragment
+import indi.wkq.superseatandroid.fragment.LibraryFragment
 import indi.wkq.superseatandroid.model.impl.LibraryModelImpl
-import indi.wkq.superseatandroid.model.response.GetUserInfoResponse
-import indi.wkq.superseatandroid.model.response.HistoryResponse
-import indi.wkq.superseatandroid.model.response.JsonData
-import indi.wkq.superseatandroid.model.response.ReservationsResponse
+import indi.wkq.superseatandroid.model.response.*
 import indi.wkq.superseatandroid.presenter.ILibraryPresenter
 import indi.wkq.superseatandroid.utils.ToastUtils
 
@@ -18,6 +16,7 @@ import indi.wkq.superseatandroid.utils.ToastUtils
 object LibraryPresenterImpl : ILibraryPresenter {
 
     private lateinit var mHistoryFragment: HistoryFragment
+    private lateinit var mLibraryFragment: LibraryFragment
 
     override fun getReservations(token: String, historyFragment: HistoryFragment) {
         mHistoryFragment = historyFragment
@@ -58,6 +57,24 @@ object LibraryPresenterImpl : ILibraryPresenter {
             gson.fromJson(gson.toJson(jsonData.data), HistoryResponse::class.java)
                 ?: return
         mHistoryFragment.updatePage(resData!!)
+    }
+
+    override fun getSeatsInRoom(token: String, roomId: String, date: String, libraryFragment: LibraryFragment) {
+        mLibraryFragment = libraryFragment
+        LibraryModelImpl.getSeatsInfo(token, roomId, date, this, libraryFragment)
+    }
+
+    fun getSeatsInRoomSuccess(jsonData: JsonData) {
+        if (!jsonData.status.equals("success")) {
+            ToastUtils.warning(jsonData.status + " : " + jsonData.message)
+            return
+        }
+
+        var gson = Gson()
+        var resData: GetRoomsResponse? =
+            gson.fromJson(gson.toJson(jsonData.data), GetRoomsResponse::class.java)
+                ?: return
+        mLibraryFragment.updatePage(resData!!)
     }
 
     fun fail(code : Int) {

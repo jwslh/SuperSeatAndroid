@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_library_item"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="@drawable/seat_bg_selector"
+    android:gravity="center_vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp">
+
+
+    <TextView
+        android:id="@+id/seat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/seat_const"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="17sp" />
+    <TextView
+        android:id="@+id/seat_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/seat_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?android:textColorPrimary"
+        android:visibility="invisible" />
+
+    <Space
+        android:layout_width="6dp"
+        android:layout_height="wrap_content" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/power"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_power"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/window"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/window"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_window"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/computer"
+            app:layout_constraintStart_toEndOf="@id/power"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/computer"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_computer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/window"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -135,5 +135,6 @@ class MeFragment : XPageFragment() {
 
     fun hideLoading() {
         mLoadingDialog.hide()
+        mLoadingDialog.dismiss()
     }
 }

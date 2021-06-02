@@ -15,6 +15,8 @@ object MyURL {
 
     const val PATH_HISTORY = "/rest/v2/history/{page}/{pageSize}"
 
+    const val PATH_LAYOUT_BY_DATE = "/rest/v2/room/layoutByDate/{roomId}/{date}"
+
     const val PATH_BOOK = "/rest/v2/freeBook"
 
     const val PATH_CANCEL = "/rest/v2/cancel/{reserveId}"

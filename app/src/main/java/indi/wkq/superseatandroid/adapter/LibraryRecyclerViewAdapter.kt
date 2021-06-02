@@ -51,7 +51,8 @@ class LibraryRecyclerViewAdapter(private val mFragment: XPageFragment, private v
                     secondaryHolder.getView<View>(R.id.level_2_item)
                         .setOnClickListener {
                             var bundle = Bundle()
-                            bundle.putString("library", item.info.group + item.info.title)
+                            bundle.putString("room", item.info.title)
+                            bundle.putString("library", item.info.group)
                             mFragment.openPage("图书馆房间信息", bundle, CoreAnim.slide, true)
                         }
                 },

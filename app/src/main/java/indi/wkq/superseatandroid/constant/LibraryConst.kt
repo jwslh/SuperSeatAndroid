@@ -107,6 +107,15 @@ object LibraryConst {
             "A1 手提电脑区" to "124"
         )
 
+    fun getRoomIdFromName(name: String) : String {
+        return return when(true) {
+            XINXI_ROOMS.containsKey(name) -> XINXI_ROOMS[name]!!
+            GONGXUE_ROOMS.containsKey(name) -> GONGXUE_ROOMS[name]!!
+            YIXUE_ROOMS.containsKey(name) -> YIXUE_ROOMS[name]!!
+            else -> ZONG_ROOMS[name]!!
+        }
+    }
+
     /**
      * 图书馆信息
      */
